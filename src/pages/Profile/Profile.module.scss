@@ -1,0 +1,302 @@
+.profilePage {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  background-color: #fbf7f4;
+  color: #2c1810;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(251, 247, 244, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loader {
+  border: 6px solid #e8e0d8;
+  border-top: 6px solid #d2691e;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.profileContainer {
+  background: #fffdfb;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(44, 24, 16, 0.12);
+  width: 100%;
+  max-width: 800px;
+  text-align: center;
+  border: 1px solid #e8e0d8;
+}
+
+.profileTitle {
+  font-family: "Georgia", serif;
+  font-size: 2.2rem;
+  color: #d2691e;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.errorMessage,
+.noUserMessage {
+  color: #ff3b3b;
+  background-color: #ffc4c4;
+  border: 1px solid #ff9b9b;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.userInfo {
+  background-color: #ffffff;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+.userInfo p {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #2c1810;
+}
+.userInfo p:last-child {
+  margin-bottom: 0;
+}
+.userInfo p strong {
+  color: #8b4513;
+}
+
+.preferencesTitle {
+  font-family: "Georgia", serif;
+  font-size: 1.8rem;
+  color: #d2691e;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.preferencesInfo {
+  background-color: #ffffff;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2.5rem;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+.preferencesInfo p {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #2c1810;
+}
+.preferencesInfo p:last-child {
+  margin-bottom: 0;
+}
+.preferencesInfo p strong {
+  color: #8b4513;
+}
+
+.noPreferences {
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  padding: 1.5rem;
+  border: 1px dashed #e8e0d8;
+  border-radius: 8px;
+  background-color: #fefcfb;
+  margin-bottom: 2.5rem;
+}
+
+.setPreferencesButton {
+  background-color: #d2691e;
+  color: #f5efe6;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
+}
+.setPreferencesButton:hover {
+  background-color: #b75c1a;
+  transform: translateY(-2px);
+}
+.setPreferencesButton:active {
+  transform: translateY(0);
+}
+
+.ordersTitle {
+  font-family: "Georgia", serif;
+  font-size: 1.8rem;
+  color: #d2691e;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+}
+
+.noOrders {
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  padding: 1.5rem;
+  border: 1px dashed #e8e0d8;
+  border-radius: 8px;
+  background-color: #fefcfb;
+}
+
+.ordersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.orderCard {
+  background-color: #ffffff;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.orderCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.2);
+}
+.orderCard .orderHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e8e0d8;
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+.orderCard .orderHeader h4 {
+  font-size: 1.2rem;
+  color: #8b4513;
+  margin: 0;
+}
+.orderCard .orderHeader .orderDate {
+  font-size: 0.85rem;
+  color: #4a4a4a;
+}
+.orderCard .perfumeDetails {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.orderCard .perfumeImage {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid #e8e0d8;
+  flex-shrink: 0;
+}
+.orderCard .perfumeInfo {
+  flex-grow: 1;
+}
+.orderCard .perfumeInfo .perfumeName {
+  font-weight: 600;
+  color: #2c1810;
+  margin-bottom: 0.2rem;
+}
+.orderCard .perfumeInfo .perfumeBrand {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+  margin-bottom: 0.2rem;
+}
+.orderCard .perfumeInfo .perfumePrice {
+  font-size: 0.9rem;
+  color: #2c1810;
+  font-weight: bold;
+}
+.orderCard .perfumeInfo .orderQuantity {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+}
+.orderCard .orderMessage {
+  font-size: 0.95rem;
+  color: #2c1810;
+  background-color: #ffffff;
+  border-top: 1px dashed #e8e0d8;
+  padding-top: 0.8rem;
+  margin-top: 0.5rem;
+  padding-left: 0.2rem;
+  line-height: 1.4;
+}
+.orderCard .orderMessage strong {
+  color: #8b4513;
+}
+
+@media (max-width: 768px) {
+  .profilePage {
+    padding: 1rem;
+  }
+  .profileContainer {
+    padding: 1.5rem;
+  }
+  .profileTitle {
+    font-size: 1.8rem;
+  }
+  .ordersTitle,
+  .preferencesTitle {
+    font-size: 1.6rem;
+  }
+  .ordersGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .profilePage {
+    padding: 0.75rem;
+  }
+  .profileContainer {
+    padding: 1rem;
+  }
+  .profileTitle {
+    font-size: 1.6rem;
+  }
+  .userInfo,
+  .preferencesInfo,
+  .noPreferences {
+    padding: 1rem;
+  }
+  .orderCard {
+    padding: 1rem;
+  }
+}

@@ -1,0 +1,147 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #f8e8e8 0%, #e8d5d5 100%);
+  padding: 30px 50px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
+  .logoLink {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+  }
+
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    background: linear-gradient(135deg, #2c1810 0%, #8b4513 50%, #d2691e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin: 0;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: "Georgia", serif;
+  }
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 0;
+  margin-left: 50px;
+}
+
+.navList {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+  margin: 0;
+  padding: 15px 30px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.navItem {
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c1810;
+    position: relative;
+    transition: all 0.3s ease;
+    padding: 8px 16px;
+    border-radius: 25px;
+    letter-spacing: 0.5px;
+
+    &:hover {
+      color: #8b4513;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      width: 0%;
+      height: 3px;
+      background: linear-gradient(90deg, #8b4513, #d2691e);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    &:hover::after {
+      width: 80%;
+    }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 20px 25px;
+  }
+
+  h1 {
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+  }
+
+  .nav {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .navList {
+    gap: 25px;
+    padding: 12px 20px;
+    flex-wrap: wrap;
+  }
+
+  .navItem a {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+}
+
+@media only screen and (max-width: 475px) {
+  .header {
+    padding: 15px 20px;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .navList {
+    gap: 15px;
+    padding: 10px 15px;
+  }
+
+  .navItem a {
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}

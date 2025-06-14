@@ -1,0 +1,672 @@
+.detailsPage {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 2rem;
+  background-color: #fbf7f4;
+  color: #2c1810;
+  min-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(251, 247, 244, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.loader {
+  border: 6px solid #e8e0d8;
+  border-top: 6px solid #d2691e;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.errorMessage,
+.noPerfumeMessage {
+  color: #ff3b3b;
+  background-color: #ffc4c4;
+  border: 1px solid #ff9b9b;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  max-width: 600px;
+  width: 100%;
+}
+
+.perfumeContainer {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(44, 24, 16, 0.12);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  max-width: 1000px;
+  width: 100%;
+  border: 1px solid #e8e0d8;
+}
+@media (max-width: 768px) {
+  .perfumeContainer {
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem;
+  }
+}
+
+.imageSection {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e8e0d8;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+  padding: 1rem;
+}
+.imageSection .perfumeImage {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.infoSection {
+  flex: 2;
+  min-width: 350px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+@media (max-width: 768px) {
+  .infoSection {
+    min-width: unset;
+    text-align: center;
+    align-items: center;
+  }
+}
+.infoSection .perfumeName {
+  font-family: "Georgia", serif;
+  font-size: 2.5rem;
+  color: #d2691e;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+.infoSection .perfumeBrand {
+  font-size: 1.3rem;
+  color: #4a4a4a;
+  margin-bottom: 0.5rem;
+}
+.infoSection .perfumePrice {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c1810;
+  margin-bottom: 0.5rem;
+}
+.infoSection .perfumeSize {
+  font-size: 1.1rem;
+  color: #4a4a4a;
+  margin-bottom: 1rem;
+}
+.infoSection .perfumeDescription {
+  font-size: 1.05rem;
+  color: #2c1810;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+  border: 1px dashed #e8e0d8;
+  padding: 1rem;
+  border-radius: 4px;
+}
+.infoSection .detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+  background-color: #ffffff;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+.infoSection .detailsGrid .detailItem {
+  font-size: 0.95rem;
+  color: #2c1810;
+}
+.infoSection .detailsGrid .detailItem strong {
+  color: #8b4513;
+}
+.infoSection .notesSection,
+.infoSection .performanceSection {
+  background-color: #ffffff;
+  border: 1px solid #e8e0d8;
+  border-radius: 8px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+  margin-bottom: 1.5rem;
+}
+.infoSection .notesSection p,
+.infoSection .notesSection .performanceItem,
+.infoSection .performanceSection p,
+.infoSection .performanceSection .performanceItem {
+  font-size: 0.95rem;
+  color: #2c1810;
+  margin-bottom: 0.5rem;
+}
+.infoSection .notesSection p:last-child,
+.infoSection .notesSection .performanceItem:last-child,
+.infoSection .performanceSection p:last-child,
+.infoSection .performanceSection .performanceItem:last-child {
+  margin-bottom: 0;
+}
+.infoSection .notesSection p strong,
+.infoSection .notesSection .performanceItem strong,
+.infoSection .performanceSection p strong,
+.infoSection .performanceSection .performanceItem strong {
+  color: #8b4513;
+}
+.infoSection .orderBtn {
+  margin-top: 1rem;
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  border: none;
+  border-radius: 5.3333333333px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  align-self: flex-start;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.25);
+}
+.infoSection .orderBtn:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.35);
+}
+.infoSection .orderBtn:active {
+  transform: translateY(0px) scale(1);
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.2);
+}
+.infoSection .orderBtn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.reviewFormSection {
+  max-width: 1000px;
+  width: 100%;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #e8e0d8;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.reviewFormSection h3 {
+  font-family: "Georgia", serif;
+  font-size: 1.7rem;
+  color: #d2691e;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-weight: 700;
+}
+.reviewFormSection .error {
+  color: #cc0000;
+  background-color: #ffe6e6;
+  border: 1px solid #ff9999;
+  padding: 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.reviewFormSection .ratingInput {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.reviewFormSection .ratingInput label {
+  font-size: 1rem;
+  color: #2c1810;
+  white-space: nowrap;
+}
+.reviewFormSection .ratingInput input[type="number"] {
+  flex-grow: 1;
+  max-width: 100px;
+  text-align: center;
+}
+.reviewFormSection .modalInput,
+.reviewFormSection .modalTextarea {
+  box-sizing: border-box;
+  color: #2c1810;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #e8e0d8;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fcf8f6;
+  width: 100%;
+}
+.reviewFormSection .modalInput::placeholder,
+.reviewFormSection .modalTextarea::placeholder {
+  color: #6a6a6a;
+}
+.reviewFormSection .modalInput:focus,
+.reviewFormSection .modalTextarea:focus {
+  outline: none;
+  border-color: #d2691e;
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.25);
+  background-color: #ffffff;
+}
+.reviewFormSection .modalInput:disabled,
+.reviewFormSection .modalTextarea:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.reviewFormSection .modalTextarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.reviewFormSection .submitButton {
+  padding: 0.9rem 2rem;
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  border: none;
+  border-radius: 5.3333333333px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  align-self: flex-end;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.25);
+  width: auto;
+}
+.reviewFormSection .submitButton:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.35);
+}
+.reviewFormSection .submitButton:active {
+  transform: translateY(0px) scale(1);
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.2);
+}
+.reviewFormSection .submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+@media (max-width: 480px) {
+  .reviewFormSection .submitButton {
+    width: 100%;
+    align-self: stretch;
+  }
+}
+
+.ratingInput {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.ratingInput label {
+  font-size: 1rem;
+  color: #2c1810;
+  white-space: nowrap;
+}
+.ratingInput .stars {
+  display: flex;
+  gap: 2px;
+}
+.ratingInput .star {
+  font-size: 1.8rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+.ratingInput .star:hover {
+  color: gold;
+  transform: scale(1.1);
+}
+.ratingInput .star.filled {
+  color: gold;
+  text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+.ratingInput [disabled] .star {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.ratingInput .currentRatingDisplay {
+  font-size: 0.95rem;
+  color: #4a4a4a;
+  margin-left: 0.5rem;
+}
+
+.reviewRatingStars {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  margin-right: 0.5rem;
+}
+.reviewRatingStars .starDisplay {
+  font-size: 1.1rem;
+  color: #ccc;
+}
+.reviewRatingStars .starDisplay.filled {
+  color: gold;
+}
+.reviewRatingStars .reviewRatingText {
+  font-size: 0.95rem;
+  color: #2c1810;
+  margin-left: 0.2rem;
+}
+
+.reviewItem .reviewHeader {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.noReviewsMessage {
+  color: #4a4a4a;
+  text-align: center;
+  font-style: italic;
+  padding: 1rem;
+  background-color: #fcf8f6;
+  border: 1px dashed #e8e0d8;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+.reviewListSection {
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 2rem;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e8e0d8;
+  box-shadow: 0 2px 8px rgba(44, 24, 16, 0.06);
+}
+.reviewListSection h3 {
+  font-family: "Georgia", serif;
+  font-size: 1.7rem;
+  color: #d2691e;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.reviewListSection .reviewItem {
+  padding: 1rem;
+  border-bottom: 1px solid #e8e0d8;
+}
+.reviewListSection .reviewItem:last-child {
+  border-bottom: none;
+}
+.reviewListSection .reviewHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+.reviewListSection .reviewHeader .reviewUser {
+  font-weight: 600;
+  color: #2c1810;
+}
+.reviewListSection .reviewHeader .reviewRating {
+  color: #d2691e;
+  font-weight: 500;
+}
+.reviewListSection .reviewHeader .verifiedBadge {
+  background-color: #f3c7a3;
+  color: #8b4513;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+.reviewListSection .reviewComment {
+  font-size: 0.95rem;
+  color: #2c1810;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+.reviewListSection .reviewDate {
+  font-size: 0.85rem;
+  color: #4a4a4a;
+  font-style: italic;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 5, 2, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.modal {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  min-width: 320px;
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+}
+.modal h3 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+  font-family: "Georgia", serif;
+  color: #d2691e;
+  font-weight: 700;
+}
+.modal .error {
+  color: #cc0000;
+  background-color: #ffe6e6;
+  border: 1px solid #ff9999;
+  padding: 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.modal .modalInput,
+.modal .modalTextarea {
+  box-sizing: border-box;
+  color: black;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #e8e0d8;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fcf8f6;
+  width: 100%;
+}
+.modal .modalInput::placeholder,
+.modal .modalTextarea::placeholder {
+  color: #6a6a6a;
+}
+.modal .modalInput:focus,
+.modal .modalTextarea:focus {
+  outline: none;
+  border-color: #d2691e;
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.25);
+  background-color: #ffffff;
+}
+.modal .modalInput:disabled,
+.modal .modalTextarea:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+.modal .modalTextarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.modal .modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.modal .modalActions button {
+  padding: 0.75rem 1.8rem;
+  border: none;
+  border-radius: 5.3333333333px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+}
+.modal .modalActions button.submitButton {
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2);
+}
+.modal .modalActions button.submitButton:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.3);
+}
+.modal .modalActions button.submitButton:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.15);
+}
+.modal .modalActions button.submitButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+.modal .modalActions button.cancelButton {
+  background-color: #e0d8d1;
+  color: #2c1810;
+  border: 1px solid #b7adab;
+}
+.modal .modalActions button.cancelButton:hover {
+  background-color: #d1c8c0;
+  border-color: #9d918a;
+  transform: translateY(-2px);
+}
+.modal .modalActions button.cancelButton:active {
+  transform: translateY(0px);
+}
+.modal .modalActions button.cancelButton:disabled {
+  background-color: #f0f0f0;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .detailsPage {
+    padding: 1rem;
+  }
+  .perfumeContainer {
+    padding: 1.5rem;
+    gap: 2rem;
+  }
+  .infoSection .perfumeName {
+    font-size: 2rem;
+  }
+  .infoSection .perfumeBrand {
+    font-size: 1.1rem;
+  }
+  .infoSection .perfumePrice {
+    font-size: 1.5rem;
+  }
+  .infoSection .perfumeDescription {
+    font-size: 1rem;
+  }
+  .infoSection .orderBtn {
+    align-self: center;
+    width: 100%;
+  }
+  .modal {
+    min-width: auto;
+    margin: 1rem;
+  }
+  .reviewFormSection,
+  .reviewListSection {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .detailsPage {
+    padding: 0.75rem;
+  }
+  .perfumeContainer {
+    padding: 1rem;
+  }
+  .infoSection {
+    gap: 0.5rem;
+  }
+  .infoSection .perfumeName {
+    font-size: 1.8rem;
+  }
+  .infoSection .perfumeBrand {
+    font-size: 1rem;
+  }
+  .infoSection .perfumePrice {
+    font-size: 1.3rem;
+  }
+  .modal h3 {
+    font-size: 1.5rem;
+  }
+  .modal .modalInput {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  .modal .modalActions {
+    flex-direction: column-reverse;
+  }
+  .modal .modalActions button {
+    width: 100%;
+  }
+}

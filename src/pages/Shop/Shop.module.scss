@@ -1,0 +1,526 @@
+/* Shop.module.scss */
+
+.shopPage {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1.5rem;
+  background-color: #fbf7f4;
+  color: #2c1810;
+  min-height: 100vh;
+}
+
+.loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(251, 247, 244, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.loader {
+  border: 6px solid #e8e0d8;
+  border-top: 6px solid #d2691e;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.filters {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: #fffdfb;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.filters .filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.filters button {
+  padding: 0.6rem 1.2rem;
+  background-color: #f5efe6;
+  color: #5a3d2b;
+  font-weight: 500;
+  border: 1px solid #e8e0d8;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
+  text-transform: capitalize;
+}
+.filters button:hover {
+  background-color: #eee9e1;
+  border-color: #c8b098;
+  color: #d2691e;
+  transform: translateY(-2px);
+}
+.filters button.activeFilter {
+  background-color: #d2691e;
+  color: #fdfbf9;
+  border-color: #d2691e;
+  font-weight: bold;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+.filters .filterInputs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.filters .searchInput,
+.filters .priceInput {
+  padding: 0.75rem;
+  border: 1px solid #e8e0d8;
+  background-color: #ffffff;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  flex-grow: 1;
+  min-width: 150px;
+  color: #2c1810;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.filters .searchInput::placeholder,
+.filters .priceInput::placeholder {
+  color: #7b7b7b;
+}
+.filters .searchInput:focus,
+.filters .priceInput:focus {
+  outline: none;
+  border-color: #d2691e;
+  box-shadow: 0 0 0 2px rgba(210, 105, 30, 0.25);
+}
+.filters .priceInput {
+  max-width: 120px;
+  flex-grow: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  background: #ffffff;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #e8e0d8;
+  box-shadow: 0 4px 12px rgba(44, 24, 16, 0.12);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(44, 24, 16, 0.2);
+  border-color: #c8b098;
+}
+.card .cardImageContainer {
+  width: 100%;
+  height: 220px;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.card .cardImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 4px;
+}
+.card .cardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.card .cardName {
+  margin: 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-family: "Georgia", serif;
+  color: #d2691e;
+}
+.card .cardBrand {
+  font-size: 0.9rem;
+  color: #4a4a4a;
+  margin-bottom: 0.5rem;
+}
+.card .cardDetails {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.card .cardDetails .cardPrice {
+  font-weight: bold;
+  color: #2c1810;
+}
+.card .cardDetails .cardSize {
+  color: #4a4a4a;
+}
+.card .orderBtn {
+  margin-top: 0.5rem;
+  padding: 0.7rem 1.5rem;
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  border: none;
+  border-radius: 5.3333333333px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  align-self: stretch;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.25);
+}
+.card .orderBtn:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.35);
+}
+.card .orderBtn:active {
+  transform: translateY(0px) scale(1);
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.2);
+}
+
+.noResults {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #4a4a4a;
+  padding: 3rem 0;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 5, 2, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.quizPrompt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem;
+  margin: 3rem auto;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(44, 24, 16, 0.15);
+  max-width: 600px;
+  text-align: center;
+  border: 1px solid #c8b098;
+}
+.quizPrompt .noResults {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #d2691e;
+  padding: 0;
+}
+.quizPrompt .quizButton {
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
+}
+.quizPrompt .quizButton:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(139, 69, 19, 0.4);
+}
+.quizPrompt .quizButton:active {
+  transform: translateY(0px) scale(1);
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2);
+}
+
+.modal {
+  background: #ffffff;
+  padding: 2rem 2.5rem;
+  border-radius: 12px;
+  min-width: 320px;
+  max-width: 450px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.25);
+}
+.modal h3 {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+  font-family: "Georgia", serif;
+  color: #d2691e;
+  font-weight: 700;
+}
+.modal .error {
+  color: #cc0000;
+  background-color: #ffe6e6;
+  border: 1px solid #ff9999;
+  padding: 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+.modal .modalInput,
+.modal .modalTextarea {
+  box-sizing: border-box;
+  color: black;
+  padding: 0.9rem;
+  font-size: 1rem;
+  border: 1px solid #e8e0d8;
+  border-radius: 4px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fcf8f6;
+  width: 100%;
+}
+.modal .modalInput::placeholder,
+.modal .modalTextarea::placeholder {
+  color: #6a6a6a;
+}
+.modal .modalInput:focus,
+.modal .modalTextarea:focus {
+  outline: none;
+  border-color: #d2691e;
+  box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.25);
+  background-color: #ffffff;
+}
+.modal .modalTextarea {
+  resize: vertical;
+  min-height: 80px;
+}
+.modal .modalActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.modal .modalActions button {
+  padding: 0.75rem 1.8rem;
+  border: none;
+  border-radius: 5.3333333333px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  letter-spacing: 0.5px;
+}
+.modal .modalActions button.submitButton {
+  background: linear-gradient(135deg, #d2691e 0%, #8b4513 100%);
+  color: #fdfbf9;
+  box-shadow: 0 4px 10px rgba(139, 69, 19, 0.2);
+}
+.modal .modalActions button.submitButton:hover {
+  background: linear-gradient(135deg, #dd792c 0%, #a45016 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(139, 69, 19, 0.3);
+}
+.modal .modalActions button.submitButton:active {
+  transform: translateY(0px);
+  box-shadow: 0 2px 5px rgba(139, 69, 19, 0.15);
+}
+.modal .modalActions button.cancelButton {
+  background-color: #e0d8d1;
+  color: #2c1810;
+  border: 1px solid #c8b098;
+}
+.modal .modalActions button.cancelButton:hover {
+  background-color: #d1c8c0;
+  border-color: #9d918a;
+  transform: translateY(-2px);
+}
+.modal .modalActions button.cancelButton:active {
+  transform: translateY(0px);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5rem;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.pageButton {
+  padding: 0.7rem 1.2rem;
+  background-color: #f5efe6;
+  color: #5a3d2b;
+  font-weight: 500;
+  border: 1px solid #e8e0d8;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease,
+    border-color 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
+  min-width: 40px;
+}
+
+.pageButton:hover:not(:disabled) {
+  background-color: #eee9e1;
+  border-color: #c8b098;
+  color: #d2691e;
+  transform: translateY(-2px);
+}
+
+.pageButton:disabled {
+  background-color: #f0f0f0;
+  color: #a0a0a0;
+  cursor: not-allowed;
+  border-color: #e0e0e0;
+}
+
+.pageButton.activePage {
+  background-color: #d2691e;
+  color: #fdfbf9;
+  border-color: #d2691e;
+  font-weight: bold;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.ellipsis {
+  padding: 0.7rem 0.5rem;
+  color: #5a3d2b;
+}
+
+@media (max-width: 768px) {
+  .quizPrompt {
+    padding: 2rem;
+  }
+  .quizPrompt .noResults {
+    font-size: 1.3rem;
+  }
+  .quizPrompt .quizButton {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+  .filters .filterInputs {
+    flex-direction: column;
+  }
+  .filters .filterInputs .searchInput,
+  .filters .filterInputs .priceInput {
+    max-width: none;
+  }
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+  }
+  .modal {
+    min-width: auto;
+    margin: 1rem;
+  }
+  .pagination {
+    gap: 0.4rem;
+    margin-top: 2rem;
+  }
+  .pageButton {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+    min-width: 35px;
+  }
+  .ellipsis {
+    padding: 0.6rem 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .quizPrompt {
+    padding: 1.5rem;
+  }
+  .quizPrompt .noResults {
+    font-size: 1.1rem;
+  }
+  .quizPrompt .quizButton {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  .shopPage {
+    padding: 1rem;
+  }
+  .filters {
+    padding: 1rem;
+  }
+  .filters .filterGroup {
+    gap: 0.5rem;
+  }
+  .filters .filterGroup button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+  .card .cardName {
+    font-size: 1.15rem;
+  }
+  .card .orderBtn {
+    padding: 0.65rem 1.3rem;
+    font-size: 0.95rem;
+  }
+  .modal h3 {
+    font-size: 1.5rem;
+  }
+  .modal .modalInput {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  .modal .modalActions {
+    flex-direction: column-reverse;
+  }
+  .modal .modalActions button {
+    width: 100%;
+  }
+  .pagination {
+    flex-direction: row;
+    gap: 0.3rem;
+  }
+  .pageButton {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    min-width: 30px;
+  }
+}
